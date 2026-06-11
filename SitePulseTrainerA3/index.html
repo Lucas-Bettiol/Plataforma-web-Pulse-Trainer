@@ -33,14 +33,32 @@
     </div>
     <button class="btn btn-primary" onclick="doLogin()">⚡ Entrar</button>
     <div class="login-links">
-      <button class="link-btn">Esqueci minha senha</button>
-      <button class="link-btn">Primeiro acesso</button>
+      <button class="link-btn" type="button" onclick="UI.info('Entre em contato com seu personal para redefinir a senha.')">Esqueci minha senha</button>
+      <button class="link-btn" type="button" id="createAccountLink">Criar conta</button>
     </div>
+    <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:16px;line-height:1.5;">
+      Demo: Aluno CPF 123.456.789-00 / senha 123456<br>
+      Personal CPF 987.654.321-00 / senha admin123
+    </p>
   </div>
 </div>
 
 <!-- ══════════ APP LAYOUT ══════════ -->
 <div id="appLayout" class="app-layout hidden">
+
+  <!-- MOBILE HEADER -->
+  <header class="mobile-header" id="mobileHeader">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <div class="hamburger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </button>
+    <span id="mobilePageTitle" style="font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:1px;">PULSE<span style="color:var(--green)">TRAINER</span></span>
+    <button class="theme-btn-topbar" type="button" onclick="UI.toggleTheme()" aria-label="Alternar tema">🌓</button>
+  </header>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
@@ -72,8 +90,9 @@
           <h1 style="font-family:var(--font-display);font-size:24px;font-weight:900;">MARCO ALVES 👋</h1>
         </div>
         <div class="topbar-actions">
-          <div class="notif-btn"><span>🔔</span><div class="notif-dot"></div></div>
-          <div class="user-avatar" style="width:40px;height:40px;">MA</div>
+          <button class="theme-btn-topbar" type="button" onclick="UI.toggleTheme()" aria-label="Alternar tema" title="Alternar tema">🌓</button>
+          <div class="notif-btn" id="notifBtnAluno" role="button" tabindex="0" aria-label="Notificações" onclick="openNotifPanel()"><span>🔔</span><div class="notif-dot" id="notifDotAluno" style="display:none"></div></div>
+          <div class="user-avatar" id="topbarAvatarAluno" style="width:40px;height:40px;"></div>
         </div>
       </div>
 
@@ -708,13 +727,13 @@
               <select class="page-form-select"><option>Emagrecimento</option><option>Hipertrofia</option><option>Performance</option><option>Saúde Geral</option></select>
             </div>
             <div class="page-form-group"><label class="page-form-label">Nova Senha</label><input class="page-form-input" type="password" placeholder="••••••••"></div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div class="theme-toggle-wrap">
               <span style="font-size:14px;">🌙 Tema Escuro</span>
-              <div style="width:44px;height:24px;background:var(--green);border-radius:99px;position:relative;cursor:pointer;"><div style="position:absolute;right:3px;top:3px;width:18px;height:18px;background:#fff;border-radius:50%;"></div></div>
+              <button class="theme-toggle active" id="themeToggle" type="button" role="switch" aria-label="Tema escuro"></button>
             </div>
-            <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0">
+            <div class="theme-toggle-wrap" style="border-bottom:none;">
               <span style="font-size:14px;">🔔 Notificações</span>
-              <div style="width:44px;height:24px;background:var(--green);border-radius:99px;position:relative;cursor:pointer;"><div style="position:absolute;right:3px;top:3px;width:18px;height:18px;background:#fff;border-radius:50%;"></div></div>
+              <button class="theme-toggle active" id="notifToggle" type="button" role="switch" aria-label="Notificações"></button>
             </div>
           </div>
           <div class="section-card">
@@ -736,8 +755,8 @@
           <h1 style="font-family:var(--font-display);font-size:22px;font-weight:900;">Prof. Carlos Silva 👑</h1>
         </div>
         <div class="topbar-actions">
-          <div class="notif-btn"><span>🔔</span><div class="notif-dot"></div></div>
-          <div class="user-avatar" style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--green));">CS</div>
+          <div class="notif-btn" id="notifBtnAdmin" role="button" tabindex="0" aria-label="Notificações" onclick="openNotifPanel()"><span>🔔</span><div class="notif-dot" id="notifDotAdmin" style="display:none"></div></div>
+          <div class="user-avatar" id="topbarAvatarAdmin" style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--green));"></div>
         </div>
       </div>
 
@@ -952,7 +971,7 @@
               <div style="font-size:12px;color:var(--gray);margin-right:12px;">3x8 · 120s</div>
               <button class="btn btn-danger btn-sm" style="padding:4px 8px">✕</button>
             </div>
-            <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:10px;">+ Adicionar Exercício</button>
+            <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:10px;" onclick="addExerciseRow()">+ Adicionar Exercício</button>
           </div>
           <button class="btn btn-primary" style="width:100%">💾 Salvar Treino</button>
         </div>
@@ -1159,9 +1178,9 @@
             </div>
           </div>
           <div style="display:flex;gap:8px;margin-top:16px;">
-            <button class="btn btn-ghost btn-sm">📅 Semanal</button>
-            <button class="btn btn-primary btn-sm">📆 Mensal</button>
-            <button class="btn btn-ghost btn-sm" style="margin-left:auto">🔄 Resetar Semana</button>
+            <button class="btn btn-primary btn-sm" id="btnRankSemanal" onclick="setRankingPeriod('semanal',this)">📅 Semanal</button>
+            <button class="btn btn-ghost btn-sm" id="btnRankMensal" onclick="setRankingPeriod('mensal',this)">📆 Mensal</button>
+            <button class="btn btn-ghost btn-sm" style="margin-left:auto" onclick="resetWeeklyRanking()">🔄 Resetar Semana</button>
           </div>
         </div>
       </div>
@@ -1237,8 +1256,8 @@
       <div class="page-header">
         <div class="page-title"><h1>📈 Evolução dos Alunos</h1></div>
         <div style="display:flex;gap:8px;">
-          <select class="page-form-select" style="width:150px"><option>Todos os alunos</option><option>Marco Alves</option><option>Lucas Costa</option></select>
-          <select class="page-form-select" style="width:120px"><option>Últimos 6M</option><option>Últimos 3M</option><option>Este ano</option></select>
+          <select class="page-form-select" id="evolucaoStudentFilter" style="width:150px" onchange="filterAdminEvolucao()"><option value="">Todos os alunos</option></select>
+          <select class="page-form-select" id="evolucaoPeriodFilter" style="width:120px"><option>Últimos 6M</option><option>Últimos 3M</option><option>Este ano</option></select>
         </div>
       </div>
       <div class="cards-grid">
@@ -1310,6 +1329,8 @@
   </main>
 </div>
 
+<script src="storage.js"></script>
+<script src="ui.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

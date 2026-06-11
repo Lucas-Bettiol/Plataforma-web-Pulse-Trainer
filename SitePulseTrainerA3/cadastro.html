@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Conta — PulseTrainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="login-screen">
+  <div class="login-bg"></div>
+  <div class="login-grid"></div>
+  <div class="login-box" style="max-width:480px;">
+    <div class="login-logo">
+      <div class="login-logo-icon">⚡</div>
+      <h1>PULSE<span>TRAINER</span></h1>
+      <p>Criar nova conta</p>
+    </div>
+
+    <form id="registerForm" novalidate>
+      <div class="role-pills">
+        <button type="button" class="role-pill active" data-role="aluno">🏋️ Aluno</button>
+        <button type="button" class="role-pill" data-role="admin">👑 Personal</button>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regName">Nome completo *</label>
+        <input type="text" class="form-input" id="regName" placeholder="Seu nome" required autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regCpf">CPF *</label>
+        <input type="text" class="form-input" id="regCpf" placeholder="000.000.000-00" required autocomplete="off" inputmode="numeric">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regEmail">E-mail</label>
+        <input type="email" class="form-input" id="regEmail" placeholder="seu@email.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regPhone">Telefone</label>
+        <input type="tel" class="form-input" id="regPhone" placeholder="(00) 00000-0000" autocomplete="tel" inputmode="tel">
+      </div>
+
+      <div class="two-col" style="gap:12px;margin-bottom:0;">
+        <div class="form-group">
+          <label class="form-label" for="regHeight">Altura (cm)</label>
+          <input type="number" class="form-input" id="regHeight" placeholder="170" min="100" max="250" inputmode="numeric">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="regWeight">Peso (kg)</label>
+          <input type="number" class="form-input" id="regWeight" placeholder="70" min="30" max="300" step="0.1" inputmode="decimal">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regGoal">Objetivo</label>
+        <select class="form-input" id="regGoal" style="cursor:pointer;">
+          <option>Emagrecimento</option>
+          <option>Hipertrofia</option>
+          <option>Performance</option>
+          <option>Saúde Geral</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regPass">Senha *</label>
+        <input type="password" class="form-input" id="regPass" placeholder="Mínimo 6 caracteres" required minlength="6" autocomplete="new-password">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="regPassConfirm">Confirmar senha *</label>
+        <input type="password" class="form-input" id="regPassConfirm" placeholder="Repita a senha" required autocomplete="new-password">
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="registerBtn">⚡ Criar Conta</button>
+    </form>
+
+    <div class="login-links" style="margin-top:20px;">
+      <button type="button" class="link-btn" onclick="window.location.href='index.html'">← Já tenho conta</button>
+    </div>
+  </div>
+</div>
+
+<script src="storage.js"></script>
+<script src="ui.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  UI.init();
+  UI.applyTheme(Storage.getTheme());
+
+  let selectedRole = 'aluno';
+  document.querySelectorAll('.role-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      selectedRole = pill.dataset.role;
+      document.querySelectorAll('.role-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  const cpfInput = document.getElementById('regCpf');
+  const phoneInput = document.getElementById('regPhone');
+  cpfInput.addEventListener('input', () => UI.maskCpf(cpfInput));
+  phoneInput.addEventListener('input', () => UI.maskPhone(phoneInput));
+
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = document.getElementById('registerBtn');
+    const fields = {
+      name: document.getElementById('regName'),
+      cpf: cpfInput,
+      email: document.getElementById('regEmail'),
+      phone: phoneInput,
+      pass: document.getElementById('regPass'),
+      passConfirm: document.getElementById('regPassConfirm'),
+    };
+
+    UI.clearAllErrors(document.getElementById('registerForm'));
+    let valid = true;
+
+    if (!fields.name.value.trim()) { UI.setFieldError(fields.name, 'Informe seu nome.'); valid = false; }
+    if (!UI.validateCpf(fields.cpf.value)) { UI.setFieldError(fields.cpf, 'CPF inválido.'); valid = false; }
+    if (fields.pass.value.length < 6) { UI.setFieldError(fields.pass, 'Senha deve ter no mínimo 6 caracteres.'); valid = false; }
+    if (fields.pass.value !== fields.passConfirm.value) {
+      UI.setFieldError(fields.passConfirm, 'As senhas não coincidem.');
+      valid = false;
+    }
+    if (!valid) return;
+
+    UI.setLoading(btn, true);
+    await new Promise(r => setTimeout(r, 800));
+
+    const result = Storage.createUser({
+      name: fields.name.value.trim(),
+      cpf: fields.cpf.value,
+      email: fields.email.value.trim(),
+      phone: fields.phone.value.trim(),
+      password: fields.pass.value,
+      role: selectedRole,
+      goal: document.getElementById('regGoal').value,
+      height: document.getElementById('regHeight').value,
+      weight: document.getElementById('regWeight').value,
+    });
+
+    UI.setLoading(btn, false);
+
+    if (!result.ok) {
+      UI.error(result.error);
+      if (result.error.includes('CPF')) UI.setFieldError(fields.cpf, result.error);
+      return;
+    }
+
+    UI.success('Conta criada com sucesso! Redirecionando...');
+    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+  });
+});
+</script>
+</body>
+</html>
