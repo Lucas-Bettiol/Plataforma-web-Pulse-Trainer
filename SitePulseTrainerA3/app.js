@@ -15,7 +15,6 @@ const alunoMenu = [
   { id: 'fotos', icon: '📸', label: 'Fotos' },
   { id: 'metas', icon: '🎯', label: 'Metas' },
   { id: 'feedbacks', icon: '💬', label: 'Feedbacks' },
-  { id: 'nutricao', icon: '🥗', label: 'Nutrição' },
   { id: 'desafios', icon: '⚔️', label: 'Desafios' },
   { id: 'ranking', icon: '🏆', label: 'Ranking' },
   { id: 'conquistas', icon: '🏅', label: 'Conquistas' },
@@ -28,7 +27,6 @@ const adminMenu = [
   { id: 'adm-treinos', icon: '🏋️', label: 'Treinos' },
   { id: 'adm-evolucao', icon: '📈', label: 'Evolução' },
   { id: 'adm-feedbacks', icon: '💬', label: 'Feedbacks' },
-  { id: 'adm-nutricao', icon: '🥗', label: 'Nutrição' },
   { id: 'adm-metas', icon: '🎯', label: 'Metas' },
   { id: 'adm-desafios', icon: '⚔️', label: 'Desafios' },
   { id: 'adm-ranking', icon: '🏆', label: 'Ranking' },
@@ -233,7 +231,6 @@ function renderPage(id) {
     fotos: renderFotos,
     metas: renderMetas,
     feedbacks: renderFeedbacks,
-    nutricao: renderNutricao,
     desafios: renderDesafios,
     ranking: renderRanking,
     conquistas: renderConquistas,
@@ -242,7 +239,6 @@ function renderPage(id) {
     'adm-alunos': renderAdminAlunos,
     'adm-treinos': renderAdminTreinos,
     'adm-feedbacks': renderAdminFeedbacks,
-    'adm-nutricao': renderAdminNutricao,
     'adm-metas': renderAdminMetas,
     'adm-desafios': renderAdminDesafios,
     'adm-ranking': renderAdminRanking,
@@ -449,22 +445,6 @@ function renderFeedbacks() {
   });
 }
 
-function renderNutricao() {
-  const items = Storage.get().nutrition;
-  const pg = document.getElementById('page-nutricao');
-  const grid = pg.querySelector('.three-col');
-  if (!grid) return;
-  grid.innerHTML = items.map(n => `
-    <div class="nutrition-card">
-      <div class="nutrition-img">${n.emoji}</div>
-      <div class="nutrition-body">
-        <span class="nutrition-tag ${n.tag}">${n.tag === 'emagrecer' ? 'Emagrecimento' : n.tag.charAt(0).toUpperCase() + n.tag.slice(1)}</span>
-        <div class="nutrition-title">${n.title}</div>
-        <div class="nutrition-desc">${n.desc}</div>
-      </div>
-    </div>`).join('');
-}
-
 function renderDesafios() {
   const data = Storage.get();
   const joined = currentUser.challengeIds || [];
@@ -493,7 +473,6 @@ function renderDesafios() {
         <div style="margin-bottom:10px;"><div class="progress-bar"><div class="progress-fill" style="width:${c.progress || 0}%"></div></div>
         <div style="font-size:11px;color:var(--gray);margin-top:4px">${c.current || 0}/${c.target || 0}</div></div>
         <div class="challenge-footer">
-          <div class="challenge-days">⏰ ${c.daysLeft || 0} dias restantes</div>
           <div class="challenge-prize">🏆 ${c.prize}</div>
         </div>
       </div>`;
@@ -523,8 +502,7 @@ function renderDesafios() {
           <div style="font-size:12px;color:var(--gray);margin-bottom:8px;">
             📅 Início: <strong>${startFmt}</strong> &nbsp; ⛔ Término: <strong>${endFmt}</strong>
           </div>
-          <div class="challenge-footer">
-            <div class="challenge-days">📅 Início: ${startFmt}</div>
+          <div class="challenge-footer" style="justify-content:flex-end;">
             <button class="btn btn-primary btn-sm" onclick="joinChallenge('${c.id}')">Participar</button>
           </div>
         </div>`;
@@ -777,39 +755,6 @@ function renderAdminFeedbacks() {
   }
 }
 
-function renderAdminNutricao() {
-  const items = Storage.get().nutrition;
-  const pg = document.getElementById('page-adm-nutricao');
-  let listHost = document.getElementById('admNutritionList');
-  const listSection = pg.querySelectorAll('.section-card')[1];
-  if (!listHost && listSection) {
-    listHost = document.createElement('div');
-    listHost.id = 'admNutritionList';
-    listHost.style.cssText = 'display:flex;flex-direction:column;gap:10px;';
-    const old = listSection.querySelector('[style*="flex-direction"]');
-    if (old) old.replaceWith(listHost);
-    else listSection.appendChild(listHost);
-  }
-  if (listHost) {
-    listHost.innerHTML = items.map(n => `
-      <div class="nutrition-card" style="flex-direction:row;padding:0;overflow:hidden">
-        <div class="nutrition-img" style="height:auto;width:60px;min-width:60px;font-size:24px;">${n.emoji}</div>
-        <div class="nutrition-body" style="padding:12px;flex:1">
-          <span class="nutrition-tag ${n.tag}">${n.tag}</span>
-          <div class="nutrition-title" style="font-size:13px;">${n.title}</div>
-          <div style="display:flex;gap:6px;margin-top:8px;">
-            <button class="btn btn-danger btn-sm" onclick="deleteNutritionItem('${n.id}')">🗑️</button>
-          </div>
-        </div>
-      </div>`).join('');
-  }
-  const pubBtn = pg.querySelector('.section-card .btn-primary');
-  if (pubBtn && !pubBtn.dataset.bound) {
-    pubBtn.dataset.bound = '1';
-    pubBtn.onclick = publishNutrition;
-  }
-}
-
 function renderAdminMetas() {
   const goals = Storage.get().adminGoals;
   const pg = document.getElementById('page-adm-metas');
@@ -984,6 +929,30 @@ function renderAdminEvolucao() {
   if (filtered.length === 0) {
     tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--gray);padding:20px;">Nenhum registro encontrado.</td></tr>`;
   }
+
+  // Update stat cards dynamically based on ALL students (not just filtered)
+  const allWithWeight = students.filter(s => s.weight);
+  let totalLost = 0, totalGained = 0, fatDiffs = [], fatCount = 0, totalWorkouts = 0;
+  allWithWeight.forEach(u => {
+    const diff = (u.initialWeight || u.weight) - u.weight;
+    if (diff > 0) totalLost += diff;
+    const muscleDiff = (u.muscleMass || 0) - ((u.initialMuscleMass || u.muscleMass) || 0);
+    if (muscleDiff > 0) totalGained += muscleDiff;
+    if (u.bodyFat != null && u.initialBodyFat != null) {
+      fatDiffs.push(u.bodyFat - u.initialBodyFat);
+    }
+    totalWorkouts += u.workoutsCompleted || 0;
+  });
+  const avgFatChange = fatDiffs.length > 0 ? (fatDiffs.reduce((a, b) => a + b, 0) / fatDiffs.length) : null;
+
+  const elLost = document.getElementById('evolStatLost');
+  const elMuscle = document.getElementById('evolStatMuscle');
+  const elFat = document.getElementById('evolStatFat');
+  const elWorkouts = document.getElementById('evolStatWorkouts');
+  if (elLost) elLost.textContent = '-' + totalLost.toFixed(1) + 'kg';
+  if (elMuscle) elMuscle.textContent = '+' + totalGained.toFixed(1) + 'kg';
+  if (elFat) elFat.textContent = avgFatChange != null ? (avgFatChange <= 0 ? '' : '+') + avgFatChange.toFixed(1) + '%' : '—';
+  if (elWorkouts) elWorkouts.textContent = totalWorkouts.toLocaleString('pt-BR');
 }
 
 function filterAdminEvolucao() {
@@ -1240,7 +1209,62 @@ async function deleteStudent(id, name) {
 
 function viewStudent(id) {
   const u = Storage.getUserById(id);
-  if (u) UI.info(u.name + ' — ' + (u.xp || 0) + ' XP · ' + (u.workoutsCompleted || 0) + ' treinos');
+  if (!u) return;
+  const level = Storage.getLevel(u.xp || 0);
+  const initWeight = u.initialWeight;
+  const curWeight = u.weight;
+  let weightDiffHtml = '';
+  if (typeof initWeight === 'number' && typeof curWeight === 'number') {
+    const diff = curWeight - initWeight;
+    const color = diff <= 0 ? 'var(--green)' : 'var(--blue)';
+    const sign = diff > 0 ? '+' : '';
+    weightDiffHtml = `<span style="color:${color};font-weight:700;">${sign}${diff.toFixed(1)}kg</span>`;
+  }
+  const content = `
+    <div style="padding:20px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;">
+        <div class="user-avatar" style="width:56px;height:56px;font-size:18px;">${Storage.getInitials(u.name)}</div>
+        <div>
+          <div style="font-family:var(--font-display);font-size:16px;font-weight:700;">${u.name}</div>
+          <div style="font-size:12px;color:var(--gray);">${u.email || '—'}</div>
+        </div>
+      </div>
+      <div class="evo-grid" style="margin-bottom:16px;">
+        <div class="evo-stat">
+          <div class="evo-stat-value" style="color:var(--green)">${(u.xp || 0).toLocaleString('pt-BR')}</div>
+          <div class="evo-stat-label">XP · ${level.name}</div>
+        </div>
+        <div class="evo-stat">
+          <div class="evo-stat-value" style="color:var(--blue)">${u.workoutsCompleted || 0}</div>
+          <div class="evo-stat-label">Treinos</div>
+        </div>
+        <div class="evo-stat">
+          <div class="evo-stat-value" style="color:var(--gold)">${u.streak || 0}🔥</div>
+          <div class="evo-stat-label">Streak</div>
+        </div>
+      </div>
+      <div class="page-form-group">
+        <label class="page-form-label">CPF</label>
+        <div style="font-size:14px;">${Storage.formatCpf(u.cpf) || '—'}</div>
+      </div>
+      <div class="page-form-group">
+        <label class="page-form-label">Telefone</label>
+        <div style="font-size:14px;">${u.phone || '—'}</div>
+      </div>
+      <div class="page-form-group">
+        <label class="page-form-label">Objetivo</label>
+        <div style="font-size:14px;">${u.goal || '—'}</div>
+      </div>
+      <div class="page-form-group">
+        <label class="page-form-label">Peso</label>
+        <div style="font-size:14px;">${typeof curWeight === 'number' ? curWeight + 'kg' : '—'}${typeof initWeight === 'number' ? ` <span style="color:var(--gray)">(inicial: ${initWeight}kg)</span> ${weightDiffHtml}` : ''}</div>
+      </div>
+      <div class="page-form-group">
+        <label class="page-form-label">Status</label>
+        <div><span class="status-pill ${u.status === 'inativo' ? 'status-inactive' : 'status-active'}">${u.status === 'inativo' ? 'Inativo' : 'Ativo'}</span></div>
+      </div>
+    </div>`;
+  UI.modal('👁️ ' + u.name, content);
 }
 
 function sendFeedback() {
@@ -1254,39 +1278,6 @@ function sendFeedback() {
   renderAdminFeedbacks();
 }
 
-function publishNutrition() {
-  const pg = document.getElementById('page-adm-nutricao');
-  const formCard = pg.querySelector('.section-card');
-  const titleInput = formCard.querySelector('.page-form-input');
-  const descTextarea = formCard.querySelector('.page-form-textarea');
-  const tagSelect = formCard.querySelector('.page-form-select');
-  const title = titleInput?.value.trim();
-  const desc = descTextarea?.value.trim();
-  const tagRaw = tagSelect?.value?.toLowerCase() || 'emagrecimento';
-  if (!title) { UI.error('Preencha o título do conteúdo.'); return; }
-  if (!desc) { UI.error('Preencha a descrição do conteúdo.'); return; }
-  const emojiMap = { emagrecimento: '🥗', hipertrofia: '🍗', performance: '⚡' };
-  const tagMap = { emagrecimento: 'emagrecer', hipertrofia: 'hipertrofia', performance: 'performance' };
-  Storage.saveNutrition({ emoji: emojiMap[tagRaw] || '🥗', tag: tagMap[tagRaw] || 'emagrecer', title, desc });
-  UI.success('Conteúdo publicado!');
-  titleInput.value = '';
-  descTextarea.value = '';
-  renderAdminNutricao();
-  renderNutricao();
-}
-  inputs[0].value = ''; inputs[2].value = '';
-  renderAdminNutricao();
-  renderNutricao();
-
-
-async function deleteNutritionItem(id) {
-  const ok = await UI.confirm('Remover este conteúdo?');
-  if (!ok) return;
-  Storage.deleteNutrition(id);
-  UI.success('Conteúdo removido.');
-  renderAdminNutricao();
-}
-
 function saveNewWorkout() {
   const pg = document.getElementById('page-adm-treinos');
   const inputs = pg.querySelectorAll('.two-col .section-card:last-child > .page-form-group > .page-form-input');
@@ -1294,7 +1285,7 @@ function saveNewWorkout() {
   if (!name) { UI.error('Informe o nome do treino.'); return; }
   const objective = pg.querySelector('.two-col .section-card:last-child .page-form-select')?.value || 'Hipertrofia';
   // Collect dynamically added exercises
-  const exerciseItems = pg.querySelectorAll('.two-col .section-card:last-child .exercise-item');
+  const exerciseItems = pg.querySelectorAll('#newWorkoutExercises .exercise-item');
   const exercises = [];
   exerciseItems.forEach(item => {
     const nameInput = item.querySelector('input:first-child');
@@ -1490,8 +1481,7 @@ async function resetWeeklyRanking() {
 
 // ══════════ ADD EXERCISE ROW ══════════
 function addExerciseRow() {
-  const pg = document.getElementById('page-adm-treinos');
-  const exerciseContainer = pg.querySelector('.section-card:last-child [style*="border:1px solid"]');
+  const exerciseContainer = document.getElementById('newWorkoutExercises');
   if (!exerciseContainer) return;
   const addBtn = exerciseContainer.querySelector('.btn-ghost');
   const row = document.createElement('div');

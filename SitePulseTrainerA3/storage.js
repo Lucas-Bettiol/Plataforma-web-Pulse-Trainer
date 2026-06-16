@@ -36,7 +36,7 @@ function getDefaultData() {
     users: [
       {
         id: 'u1',
-        cpf: '12345678900',
+        cpf: '12345678909',
         password: '123456',
         role: 'aluno',
         name: 'Marco Alves',
@@ -68,14 +68,14 @@ function getDefaultData() {
         frequencyWeeks: [3, 4, 2, 5, 3, 5, 4, 5],
         badges: ['primeiro-treino', '7-dias', '50-treinos', 'menos-10kg', 'top-3'],
         goals: [
-          { id: 'g1', name: 'Perder 15kg', current: 13.5, target: 15, unit: 'kg', deadline: '2024-08-31', type: 'weight' },
+          { id: 'g1', name: 'Perder 15kg', current: 13.5, target: 15, unit: 'kg', deadline: '2026-08-31', type: 'weight' },
           { id: 'g2', name: 'Treinar 20x no mês', current: 16, target: 20, unit: 'treinos', deadline: null, type: 'workouts' },
-          { id: 'g3', name: 'Ganhar 3kg de massa', current: 1.2, target: 3, unit: 'kg', deadline: '2024-12-31', type: 'muscle' },
+          { id: 'g3', name: 'Ganhar 3kg de massa', current: 1.2, target: 3, unit: 'kg', deadline: '2026-12-31', type: 'muscle' },
           { id: 'g4', name: 'Streak de 30 dias', current: 12, target: 30, unit: 'dias', deadline: null, type: 'streak' },
         ],
         photos: [
-          { id: 'p1', label: 'Frente', date: 'Jun/24', emoji: '🟢' },
-          { id: 'p2', label: 'Frente', date: 'Mai/24', emoji: '🔵' },
+          { id: 'p1', label: 'Frente', date: 'Jun/26', emoji: '🟢' },
+          { id: 'p2', label: 'Frente', date: 'Mai/26', emoji: '🔵' },
         ],
         workoutProgress: {},
         challengeIds: ['c1', 'c2'],
@@ -95,7 +95,7 @@ function getDefaultData() {
       },
       {
         id: 'u3',
-        cpf: '11122233344',
+        cpf: '11122233396',
         password: '123456',
         role: 'aluno',
         name: 'Lucas Costa',
@@ -127,7 +127,7 @@ function getDefaultData() {
       },
       {
         id: 'u4',
-        cpf: '55566677788',
+        cpf: '55566677720',
         password: '123456',
         role: 'aluno',
         name: 'Pedro Gomes',
@@ -148,7 +148,7 @@ function getDefaultData() {
       },
       {
         id: 'u5',
-        cpf: '99988877766',
+        cpf: '99988877714',
         password: '123456',
         role: 'aluno',
         name: 'Ana Santos',
@@ -226,18 +226,10 @@ function getDefaultData() {
       { id: 'f4', fromId: 'u2', toId: 'u3', text: 'Vamos aumentar a carga no supino: 70kg → 75kg na próxima sessão.', date: new Date(Date.now() - 86400000).toISOString() },
       { id: 'f5', fromId: 'u2', toId: 'u5', text: 'Vi que você faltou 3 dias esta semana. Tudo bem? Precisamos conversar sobre sua rotina.', date: new Date(Date.now() - 2 * 86400000).toISOString() },
     ],
-    nutrition: [
-      { id: 'n1', emoji: '🥗', tag: 'emagrecer', title: 'Déficit calórico inteligente', desc: 'Como calcular seu déficit sem perder massa muscular durante o processo.' },
-      { id: 'n2', emoji: '🍗', tag: 'hipertrofia', title: 'Proteína para ganho de massa', desc: 'Quantidade ideal, timing e as melhores fontes de proteína para hipertrofia.' },
-      { id: 'n3', emoji: '⚡', tag: 'performance', title: 'Pré-treino natural', desc: 'Alimentos que potencializam sua energia e foco antes do treino sem suplementos.' },
-      { id: 'n4', emoji: '💧', tag: 'emagrecer', title: 'Hidratação estratégica', desc: 'Beber água no momento certo aumenta o metabolismo e reduz a fome.' },
-      { id: 'n5', emoji: '🥚', tag: 'hipertrofia', title: 'Café da manhã campeão', desc: 'A refeição mais importante para quem quer ganhar massa muscular de verdade.' },
-      { id: 'n6', emoji: '🏃', tag: 'performance', title: 'Carboidratos e treino', desc: 'Quando e quanto consumir para máxima performance nos seus treinos.' },
-    ],
     challenges: [
-      { id: 'c1', name: '30 Dias Sem Faltar', icon: '🔥', desc: 'Treine por 30 dias consecutivos sem nenhuma falta. Consistência é o segredo dos campeões.', type: 'frequencia', progress: 40, current: 12, target: 30, daysLeft: 18, prize: '500 XP + Badge Lenda', status: 'ativo', startDate: '2024-06-01', endDate: '2024-07-01', participants: 24 },
-      { id: 'c2', name: 'Desafio Emagrecimento', icon: '📉', desc: 'Quem perder mais % de gordura em 60 dias vence. Pesagem quinzenal.', type: 'emagrecimento', progress: 65, current: 3, target: 10, daysLeft: 21, prize: '1º lugar: 1000 XP', status: 'ativo', startDate: '2024-05-01', endDate: '2024-07-01', participants: 18 },
-      { id: 'c3', name: 'Desafio Hipertrofia', icon: '💪', desc: 'Ganhe o máximo de massa muscular em 90 dias. Pesagem e bioimpedância mensais.', type: 'hipertrofia', progress: 0, status: 'disponivel', startDate: '2024-07-01', endDate: '2024-10-01', prize: '1000 XP', participants: 0 },
+      { id: 'c1', name: '30 Dias Sem Faltar', icon: '🔥', desc: 'Treine por 30 dias consecutivos sem nenhuma falta. Consistência é o segredo dos campeões.', type: 'frequencia', progress: 40, current: 12, target: 30, prize: '500 XP + Badge Lenda', status: 'ativo', startDate: '2026-06-01', endDate: '2026-07-01', participants: 24 },
+      { id: 'c2', name: 'Desafio Emagrecimento', icon: '📉', desc: 'Quem perder mais % de gordura em 60 dias vence. Pesagem quinzenal.', type: 'emagrecimento', progress: 65, current: 3, target: 10, prize: '1º lugar: 1000 XP', status: 'ativo', startDate: '2026-05-01', endDate: '2026-07-01', participants: 18 },
+      { id: 'c3', name: 'Desafio Hipertrofia', icon: '💪', desc: 'Ganhe o máximo de massa muscular em 90 dias. Pesagem e bioimpedância mensais.', type: 'hipertrofia', progress: 0, status: 'disponivel', startDate: '2026-07-01', endDate: '2026-10-01', prize: '1000 XP', participants: 0 },
     ],
     adminGoals: [
       { id: 'ag1', studentId: 'u1', name: 'Perder 15kg', progress: 90 },
@@ -452,7 +444,22 @@ const Storage = {
     user.xp = (user.xp || 0) + xpGain;
     user.workoutsCompleted = (user.workoutsCompleted || 0) + 1;
     user.weeklyWorkouts = (user.weeklyWorkouts || 0) + 1;
-    user.streak = (user.streak || 0) + 1;
+
+    // Only increment streak if the user hasn't worked out today yet
+    const today = new Date().toDateString();
+    const lastDate = user.lastWorkoutDate ? new Date(user.lastWorkoutDate).toDateString() : null;
+    if (lastDate !== today) {
+      const yesterday = new Date();
+      yesterday.setDate(yesterday.getDate() - 1);
+      // Reset streak if last workout was not yesterday (streak broken)
+      if (lastDate && lastDate !== yesterday.toDateString()) {
+        user.streak = 1;
+      } else {
+        user.streak = (user.streak || 0) + 1;
+      }
+      user.lastWorkoutDate = new Date().toISOString();
+    }
+
     if (!user.badges.includes('primeiro-treino')) user.badges.push('primeiro-treino');
     if (user.streak >= 7 && !user.badges.includes('7-dias')) user.badges.push('7-dias');
     if (user.workoutsCompleted >= 50 && !user.badges.includes('50-treinos')) user.badges.push('50-treinos');
@@ -551,23 +558,6 @@ const Storage = {
 
   deleteWorkout(id) {
     return this.update(d => { d.workouts = d.workouts.filter(w => w.id !== id); });
-  },
-
-  saveNutrition(item) {
-    return this.update(d => {
-      if (item.id) {
-        const idx = d.nutrition.findIndex(n => n.id === item.id);
-        if (idx >= 0) d.nutrition[idx] = item;
-        else d.nutrition.push(item);
-      } else {
-        item.id = 'n' + Date.now();
-        d.nutrition.push(item);
-      }
-    });
-  },
-
-  deleteNutrition(id) {
-    return this.update(d => { d.nutrition = d.nutrition.filter(n => n.id !== id); });
   },
 
   saveChallenge(challenge) {

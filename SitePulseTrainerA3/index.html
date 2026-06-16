@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PulseTrainer</title>
+<meta name="description" content="PulseTrainer — plataforma de treinos, evolução e gamificação para alunos e personal trainers.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PulseTrainer">
+<meta property="og:title" content="PulseTrainer — Performance · Evolução · Resultado">
+<meta property="og:description" content="Acompanhe treinos, evolução, metas, ranking e desafios. Plataforma completa para alunos e personal trainers.">
+<meta property="og:image" content="https://pulsetrainer.vercel.app/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://pulsetrainer.vercel.app/">
+<meta property="og:locale" content="pt_BR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PulseTrainer — Performance · Evolução · Resultado">
+<meta name="twitter:description" content="Acompanhe treinos, evolução, metas, ranking e desafios. Plataforma completa para alunos e personal trainers.">
+<meta name="twitter:image" content="https://pulsetrainer.vercel.app/og-image.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -37,7 +56,7 @@
       <button class="link-btn" type="button" id="createAccountLink">Criar conta</button>
     </div>
     <p style="text-align:center;font-size:12px;color:var(--gray);margin-top:16px;line-height:1.5;">
-      Demo: Aluno CPF 123.456.789-00 / senha 123456<br>
+      Demo: Aluno CPF 123.456.789-09 / senha 123456<br>
       Personal CPF 987.654.321-00 / senha admin123
     </p>
   </div>
@@ -383,14 +402,14 @@
             <div>
               <div style="height:180px;border-radius:12px;background:linear-gradient(135deg,rgba(239,68,68,0.2),rgba(239,68,68,0.05));border:1px dashed rgba(239,68,68,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
                 <span style="font-size:36px;">😔</span>
-                <span style="font-size:12px;color:var(--gray);">Jan 2024 · 92kg</span>
+                <span style="font-size:12px;color:var(--gray);">Jan 2026 · 92kg</span>
               </div>
               <div style="text-align:center;font-size:12px;color:var(--danger);margin-top:6px;font-weight:600;">ANTES</div>
             </div>
             <div>
               <div style="height:180px;border-radius:12px;background:linear-gradient(135deg,rgba(34,197,94,0.2),rgba(34,197,94,0.05));border:1px solid rgba(34,197,94,0.3);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
                 <span style="font-size:36px;">💪</span>
-                <span style="font-size:12px;color:var(--gray);">Jun 2024 · 78kg</span>
+                <span style="font-size:12px;color:var(--gray);">Jun 2026 · 78kg</span>
               </div>
               <div style="text-align:center;font-size:12px;color:var(--green);margin-top:6px;font-weight:600;">DEPOIS</div>
             </div>
@@ -408,12 +427,12 @@
           <div class="photo-grid">
             <div class="photo-item" style="background:linear-gradient(135deg,rgba(34,197,94,0.15),rgba(34,197,94,0.05));">
               <div class="photo-placeholder">🟢</div>
-              <div class="photo-date">Jun/24</div>
+              <div class="photo-date">Jun/26</div>
               <div class="photo-label">Frente</div>
             </div>
             <div class="photo-item" style="background:linear-gradient(135deg,rgba(59,130,246,0.15),rgba(59,130,246,0.05));">
               <div class="photo-placeholder">🔵</div>
-              <div class="photo-date">Mai/24</div>
+              <div class="photo-date">Mai/26</div>
               <div class="photo-label">Frente</div>
             </div>
             <div class="photo-item photo-upload-btn">
@@ -439,7 +458,7 @@
             <div class="goal-pct">90%</div>
           </div>
           <div class="progress-bar"><div class="progress-fill" style="width:90%"></div></div>
-          <div class="goal-sub">13.5kg perdidos de 15kg · Prazo: 31/08/2024</div>
+          <div class="goal-sub">13.5kg perdidos de 15kg · Prazo: 31/08/2026</div>
         </div>
         <div class="goal-item">
           <div class="goal-header">
@@ -455,7 +474,7 @@
             <div class="goal-pct">40%</div>
           </div>
           <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
-          <div class="goal-sub">1.2kg de 3kg · Prazo: 31/12/2024</div>
+          <div class="goal-sub">1.2kg de 3kg · Prazo: 31/12/2026</div>
         </div>
         <div class="goal-item" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05)">
           <div class="goal-header">
@@ -495,68 +514,6 @@
             <div class="feedback-date">1 semana atrás</div>
           </div>
           <div class="feedback-text">Parabéns pelo streak de 7 dias! Isso é disciplina real. Sua dedicação está gerando resultados. Continue com a hidratação em dia — pelo menos 3L de água por dia durante os treinos pesados.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── ALUNO: NUTRIÇÃO ── -->
-    <div class="page" id="page-nutricao">
-      <div class="page-header">
-        <div class="page-title"><h1>🥗 Nutrição</h1><p>Dicas e orientações do personal</p></div>
-        <div style="display:flex;gap:8px;">
-          <span class="status-pill status-active">Todos</span>
-          <span class="status-pill" style="background:rgba(34,197,94,0.1);color:var(--green);cursor:pointer">Emagrecimento</span>
-          <span class="status-pill" style="background:rgba(59,130,246,0.1);color:var(--blue);cursor:pointer">Hipertrofia</span>
-        </div>
-      </div>
-      <div class="three-col">
-        <div class="nutrition-card">
-          <div class="nutrition-img">🥗</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag emagrecer">Emagrecimento</span>
-            <div class="nutrition-title">Déficit calórico inteligente</div>
-            <div class="nutrition-desc">Como calcular seu déficit sem perder massa muscular durante o processo.</div>
-          </div>
-        </div>
-        <div class="nutrition-card">
-          <div class="nutrition-img">🍗</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag hipertrofia">Hipertrofia</span>
-            <div class="nutrition-title">Proteína para ganho de massa</div>
-            <div class="nutrition-desc">Quantidade ideal, timing e as melhores fontes de proteína para hipertrofia.</div>
-          </div>
-        </div>
-        <div class="nutrition-card">
-          <div class="nutrition-img">⚡</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag performance">Performance</span>
-            <div class="nutrition-title">Pré-treino natural</div>
-            <div class="nutrition-desc">Alimentos que potencializam sua energia e foco antes do treino sem suplementos.</div>
-          </div>
-        </div>
-        <div class="nutrition-card">
-          <div class="nutrition-img">💧</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag emagrecer">Emagrecimento</span>
-            <div class="nutrition-title">Hidratação estratégica</div>
-            <div class="nutrition-desc">Beber água no momento certo aumenta o metabolismo e reduz a fome.</div>
-          </div>
-        </div>
-        <div class="nutrition-card">
-          <div class="nutrition-img">🥚</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag hipertrofia">Hipertrofia</span>
-            <div class="nutrition-title">Café da manhã campeão</div>
-            <div class="nutrition-desc">A refeição mais importante para quem quer ganhar massa muscular de verdade.</div>
-          </div>
-        </div>
-        <div class="nutrition-card">
-          <div class="nutrition-img">🏃</div>
-          <div class="nutrition-body">
-            <span class="nutrition-tag performance">Performance</span>
-            <div class="nutrition-title">Carboidratos e treino</div>
-            <div class="nutrition-desc">Quando e quanto consumir para máxima performance nos seus treinos.</div>
-          </div>
         </div>
       </div>
     </div>
@@ -644,8 +601,10 @@
             <div class="challenge-name">30 Dias Sem Faltar</div>
             <div class="challenge-desc">Treine por 30 dias consecutivos sem nenhuma falta. Consistência é o segredo dos campeões.</div>
             <div style="margin-bottom:10px;"><div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div><div style="font-size:11px;color:var(--gray);margin-top:4px">12/30 dias completados</div></div>
+            <div style="font-size:12px;color:var(--gray);margin-bottom:8px;">
+              📅 Início: <strong>01/06/2026</strong> &nbsp; ⛔ Término: <strong>01/07/2026</strong>
+            </div>
             <div class="challenge-footer">
-              <div class="challenge-days">⏰ 18 dias restantes</div>
               <div class="challenge-prize">🏆 Prêmio: 500 XP + Badge Lenda</div>
             </div>
           </div>
@@ -656,8 +615,10 @@
             <div class="challenge-name">Desafio Emagrecimento</div>
             <div class="challenge-desc">Quem perder mais % de gordura em 60 dias vence. Pesagem quinzenal.</div>
             <div style="margin-bottom:10px;"><div class="progress-bar blue"><div class="progress-fill" style="width:65%"></div></div><div style="font-size:11px;color:var(--gray);margin-top:4px">Você está em 3º lugar</div></div>
+            <div style="font-size:12px;color:var(--gray);margin-bottom:8px;">
+              📅 Início: <strong>01/05/2026</strong> &nbsp; ⛔ Término: <strong>01/07/2026</strong>
+            </div>
             <div class="challenge-footer">
-              <div class="challenge-days">⏰ 21 dias restantes</div>
               <div class="challenge-prize">🥇 1º lugar: 1000 XP</div>
             </div>
           </div>
@@ -671,7 +632,7 @@
             <div class="challenge-name">Desafio Hipertrofia</div>
             <div class="challenge-desc">Ganhe o máximo de massa muscular em 90 dias. Pesagem e bioimpedância mensais.</div>
             <div class="challenge-footer">
-              <div class="challenge-days">📅 Início: 01/07/2024</div>
+              <div class="challenge-days">📅 Início: 01/07/2026</div>
               <div><button class="btn btn-primary btn-sm">Participar</button></div>
             </div>
           </div>
@@ -755,6 +716,7 @@
           <h1 style="font-family:var(--font-display);font-size:22px;font-weight:900;">Prof. Carlos Silva 👑</h1>
         </div>
         <div class="topbar-actions">
+          <button class="theme-btn-topbar" type="button" onclick="UI.toggleTheme()" aria-label="Alternar tema" title="Alternar tema">🌓</button>
           <div class="notif-btn" id="notifBtnAdmin" role="button" tabindex="0" aria-label="Notificações" onclick="openNotifPanel()"><span>🔔</span><div class="notif-dot" id="notifDotAdmin" style="display:none"></div></div>
           <div class="user-avatar" id="topbarAvatarAdmin" style="width:40px;height:40px;background:linear-gradient(135deg,var(--gold),var(--green));"></div>
         </div>
@@ -840,7 +802,7 @@
         <button class="btn btn-primary btn-sm">+ Novo Aluno</button>
       </div>
       <div class="section-card">
-        <div style="display:flex;gap:12px;margin-bottom:16px;">
+        <div class="page-adm-search-row" style="display:flex;gap:12px;margin-bottom:16px;">
           <div class="topbar-search" style="width:auto;flex:1;">
             <span>🔍</span><input placeholder="Buscar aluno...">
           </div>
@@ -959,7 +921,7 @@
           <h3>➕ Novo Treino</h3>
           <div class="page-form-group"><label class="page-form-label">Nome do Treino</label><input class="page-form-input" placeholder="Ex: Treino D — Funcional"></div>
           <div class="page-form-group"><label class="page-form-label">Objetivo</label><select class="page-form-select"><option>Hipertrofia</option><option>Emagrecimento</option><option>Performance</option><option>Resistência</option></select></div>
-          <div style="border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px;margin-bottom:14px;">
+          <div id="newWorkoutExercises" style="border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:14px;margin-bottom:14px;">
             <div style="font-size:12px;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Exercícios</div>
             <div class="exercise-item">
               <div style="font-size:13px;flex:1;color:var(--white)">Agachamento Livre</div>
@@ -1012,52 +974,6 @@
           <div class="feedback-msg">
             <div class="feedback-header"><div class="feedback-from" style="color:var(--blue)">→ Ana Santos</div><div class="feedback-date">2 dias atrás</div></div>
             <div class="feedback-text">Vi que você faltou 3 dias esta semana. Tudo bem? Precisamos conversar sobre sua rotina.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ── ADMIN: NUTRIÇÃO ── -->
-    <div class="page" id="page-adm-nutricao">
-      <div class="page-header">
-        <div class="page-title"><h1>🥗 Gestão de Nutrição</h1><p>Conteúdos para seus alunos</p></div>
-        <button class="btn btn-primary btn-sm">+ Novo Conteúdo</button>
-      </div>
-      <div class="two-col">
-        <div class="section-card">
-          <h3>📝 Novo Conteúdo</h3>
-          <div class="page-form-group"><label class="page-form-label">Título</label><input class="page-form-input" placeholder="Ex: Déficit calórico inteligente"></div>
-          <div class="page-form-group"><label class="page-form-label">Categoria</label><select class="page-form-select"><option>Emagrecimento</option><option>Hipertrofia</option><option>Performance</option></select></div>
-          <div class="page-form-group"><label class="page-form-label">Descrição</label><textarea class="page-form-textarea" placeholder="Descreva o conteúdo..."></textarea></div>
-          <div class="page-form-group"><label class="page-form-label">Tipo de Mídia</label>
-            <div style="display:flex;gap:8px;flex-wrap:wrap">
-              <span class="status-pill status-active" style="cursor:pointer">Texto</span>
-              <span class="status-pill" style="background:rgba(59,130,246,0.1);color:var(--blue);cursor:pointer">🖼️ Imagem</span>
-              <span class="status-pill" style="background:rgba(245,158,11,0.1);color:var(--gold);cursor:pointer">📄 PDF</span>
-              <span class="status-pill" style="background:rgba(139,92,246,0.1);color:var(--diamond);cursor:pointer">🎥 Vídeo</span>
-            </div>
-          </div>
-          <button class="btn btn-primary" style="width:100%">💾 Publicar Conteúdo</button>
-        </div>
-        <div class="section-card">
-          <h3>📚 Conteúdos Publicados</h3>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div class="nutrition-card" style="flex-direction:row;padding:0;overflow:hidden">
-              <div class="nutrition-img" style="height:auto;width:60px;min-width:60px;font-size:24px;">🥗</div>
-              <div class="nutrition-body" style="padding:12px">
-                <span class="nutrition-tag emagrecer">Emagrecimento</span>
-                <div class="nutrition-title" style="font-size:13px;">Déficit calórico inteligente</div>
-                <div style="display:flex;gap:6px;margin-top:8px;"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div>
-              </div>
-            </div>
-            <div class="nutrition-card" style="flex-direction:row;padding:0;overflow:hidden">
-              <div class="nutrition-img" style="height:auto;width:60px;min-width:60px;font-size:24px;">🍗</div>
-              <div class="nutrition-body" style="padding:12px">
-                <span class="nutrition-tag hipertrofia">Hipertrofia</span>
-                <div class="nutrition-title" style="font-size:13px;">Proteína para ganho de massa</div>
-                <div style="display:flex;gap:6px;margin-top:8px;"><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -1261,10 +1177,10 @@
         </div>
       </div>
       <div class="cards-grid">
-        <div class="stat-card green"><div class="stat-icon green">⚖️</div><div class="stat-value" style="color:var(--green)">-47kg</div><div class="stat-label">Total perdido (todos)</div></div>
-        <div class="stat-card blue"><div class="stat-icon blue">💪</div><div class="stat-value" style="color:var(--blue)">+18kg</div><div class="stat-label">Massa ganha (todos)</div></div>
-        <div class="stat-card gold"><div class="stat-icon gold">📊</div><div class="stat-value" style="color:var(--gold)">-6.2%</div><div class="stat-label">Redução gordura média</div></div>
-        <div class="stat-card purple"><div class="stat-icon purple">🏋️</div><div class="stat-value" style="color:var(--diamond)">1.247</div><div class="stat-label">Total treinos este mês</div></div>
+        <div class="stat-card green"><div class="stat-icon green">⚖️</div><div id="evolStatLost" class="stat-value" style="color:var(--green)">-47kg</div><div class="stat-label">Total perdido (todos)</div></div>
+        <div class="stat-card blue"><div class="stat-icon blue">💪</div><div id="evolStatMuscle" class="stat-value" style="color:var(--blue)">+18kg</div><div class="stat-label">Massa ganha (todos)</div></div>
+        <div class="stat-card gold"><div class="stat-icon gold">📊</div><div id="evolStatFat" class="stat-value" style="color:var(--gold)">-6.2%</div><div class="stat-label">Redução gordura média</div></div>
+        <div class="stat-card purple"><div class="stat-icon purple">🏋️</div><div id="evolStatWorkouts" class="stat-value" style="color:var(--diamond)">1.247</div><div class="stat-label">Total treinos este mês</div></div>
       </div>
       <div class="section-card">
         <h3>📊 Progresso Individual</h3>
