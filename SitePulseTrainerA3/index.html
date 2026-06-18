@@ -11,17 +11,17 @@
 <meta property="og:site_name" content="PulseTrainer">
 <meta property="og:title" content="PulseTrainer — Performance · Evolução · Resultado">
 <meta property="og:description" content="Acompanhe treinos, evolução, metas, ranking e desafios. Plataforma completa para alunos e personal trainers.">
-<meta property="og:image" content="https://pulsetrainer.vercel.app/og-image.png">
+<meta property="og:image" content="https://pulsetrainerproject.vercel.app/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://pulsetrainer.vercel.app/">
+<meta property="og:url" content="https://pulsetrainerproject.vercel.app/">
 <meta property="og:locale" content="pt_BR">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="PulseTrainer — Performance · Evolução · Resultado">
 <meta name="twitter:description" content="Acompanhe treinos, evolução, metas, ranking e desafios. Plataforma completa para alunos e personal trainers.">
-<meta name="twitter:image" content="https://pulsetrainer.vercel.app/og-image.png">
+<meta name="twitter:image" content="https://pulsetrainerproject.vercel.app/og-image.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -812,7 +812,7 @@
             <option>Inativos</option>
           </select>
         </div>
-        <table class="data-table">
+        <table class="data-table data-table--responsive">
           <thead>
             <tr>
               <th>Aluno</th>
@@ -825,44 +825,44 @@
           </thead>
           <tbody>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar">LC</div><div><div style="font-weight:600;">Lucas Costa</div><div style="font-size:11px;color:var(--gray)">lucas@email.com</div></div></div></td>
-              <td style="color:var(--gray)">Hipertrofia</td>
-              <td>48</td>
-              <td style="color:var(--green);font-weight:700;font-family:var(--font-display)">5.100</td>
-              <td><span class="status-pill status-active">Ativo</span></td>
-              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar">LC</div><div><div style="font-weight:600;">Lucas Costa</div><div style="font-size:11px;color:var(--gray)">lucas@email.com</div></div></div></td>
+              <td data-label="Objetivo" style="color:var(--gray)">Hipertrofia</td>
+              <td data-label="Treinos">48</td>
+              <td data-label="XP" style="color:var(--green);font-weight:700;font-family:var(--font-display)">5.100</td>
+              <td data-label="Status"><span class="status-pill status-active">Ativo</span></td>
+              <td data-label="Ações"><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,var(--diamond),#7C3AED)">MA</div><div><div style="font-weight:600;">Marco Alves</div><div style="font-size:11px;color:var(--gray)">marco@email.com</div></div></div></td>
-              <td style="color:var(--gray)">Emagrecimento</td>
-              <td>61</td>
-              <td style="color:var(--green);font-weight:700;font-family:var(--font-display)">4.250</td>
-              <td><span class="status-pill status-active">Ativo</span></td>
-              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,var(--diamond),#7C3AED)">MA</div><div><div style="font-weight:600;">Marco Alves</div><div style="font-size:11px;color:var(--gray)">marco@email.com</div></div></div></td>
+              <td data-label="Objetivo" style="color:var(--gray)">Emagrecimento</td>
+              <td data-label="Treinos">61</td>
+              <td data-label="XP" style="color:var(--green);font-weight:700;font-family:var(--font-display)">4.250</td>
+              <td data-label="Status"><span class="status-pill status-active">Ativo</span></td>
+              <td data-label="Ações"><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,var(--platinum),#0891B2)">PG</div><div><div style="font-weight:600;">Pedro Gomes</div><div style="font-size:11px;color:var(--gray)">pedro@email.com</div></div></div></td>
-              <td style="color:var(--gray)">Performance</td>
-              <td>39</td>
-              <td style="color:var(--green);font-weight:700;font-family:var(--font-display)">3.800</td>
-              <td><span class="status-pill status-active">Ativo</span></td>
-              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,var(--platinum),#0891B2)">PG</div><div><div style="font-weight:600;">Pedro Gomes</div><div style="font-size:11px;color:var(--gray)">pedro@email.com</div></div></div></td>
+              <td data-label="Objetivo" style="color:var(--gray)">Performance</td>
+              <td data-label="Treinos">39</td>
+              <td data-label="XP" style="color:var(--green);font-weight:700;font-family:var(--font-display)">3.800</td>
+              <td data-label="Status"><span class="status-pill status-active">Ativo</span></td>
+              <td data-label="Ações"><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">AS</div><div><div style="font-weight:600;">Ana Santos</div><div style="font-size:11px;color:var(--gray)">ana@email.com</div></div></div></td>
-              <td style="color:var(--gray)">Emagrecimento</td>
-              <td>27</td>
-              <td style="color:var(--gray);font-weight:700;font-family:var(--font-display)">2.900</td>
-              <td><span class="status-pill status-inactive">Inativo</span></td>
-              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,#EC4899,#BE185D)">AS</div><div><div style="font-weight:600;">Ana Santos</div><div style="font-size:11px;color:var(--gray)">ana@email.com</div></div></div></td>
+              <td data-label="Objetivo" style="color:var(--gray)">Emagrecimento</td>
+              <td data-label="Treinos">27</td>
+              <td data-label="XP" style="color:var(--gray);font-weight:700;font-family:var(--font-display)">2.900</td>
+              <td data-label="Status"><span class="status-pill status-inactive">Inativo</span></td>
+              <td data-label="Ações"><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,#F97316,#C2410C)">RF</div><div><div style="font-weight:600;">Rafael Ferreira</div><div style="font-size:11px;color:var(--gray)">rafael@email.com</div></div></div></td>
-              <td style="color:var(--gray)">Hipertrofia</td>
-              <td>33</td>
-              <td style="color:var(--gray);font-weight:700;font-family:var(--font-display)">2.700</td>
-              <td><span class="status-pill status-active">Ativo</span></td>
-              <td><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:10px;"><div class="student-row-avatar" style="background:linear-gradient(135deg,#F97316,#C2410C)">RF</div><div><div style="font-weight:600;">Rafael Ferreira</div><div style="font-size:11px;color:var(--gray)">rafael@email.com</div></div></div></td>
+              <td data-label="Objetivo" style="color:var(--gray)">Hipertrofia</td>
+              <td data-label="Treinos">33</td>
+              <td data-label="XP" style="color:var(--gray);font-weight:700;font-family:var(--font-display)">2.700</td>
+              <td data-label="Status"><span class="status-pill status-active">Ativo</span></td>
+              <td data-label="Ações"><div class="action-btns"><button class="btn btn-ghost btn-sm">👁️ Ver</button><button class="btn btn-ghost btn-sm">✏️</button><button class="btn btn-danger btn-sm">🗑️</button></div></td>
             </tr>
           </tbody>
         </table>
@@ -1184,29 +1184,29 @@
       </div>
       <div class="section-card">
         <h3>📊 Progresso Individual</h3>
-        <table class="data-table">
+        <table class="data-table data-table--responsive">
           <thead><tr><th>Aluno</th><th>Peso Inicial</th><th>Peso Atual</th><th>Variação</th><th>Gordura</th><th>Treinos</th></tr></thead>
           <tbody>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">MA</div>Marco Alves</div></td>
-              <td style="color:var(--gray)">92kg</td><td>78.5kg</td>
-              <td><span style="color:var(--green);font-weight:700;">-13.5kg ▼</span></td>
-              <td><span style="color:var(--green)">18% (-8%)</span></td>
-              <td>61</td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">MA</div>Marco Alves</div></td>
+              <td data-label="Peso Inicial" style="color:var(--gray)">92kg</td><td data-label="Peso Atual">78.5kg</td>
+              <td data-label="Variação"><span style="color:var(--green);font-weight:700;">-13.5kg ▼</span></td>
+              <td data-label="Gordura"><span style="color:var(--green)">18% (-8%)</span></td>
+              <td data-label="Treinos">61</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">LC</div>Lucas Costa</div></td>
-              <td style="color:var(--gray)">72kg</td><td>80.2kg</td>
-              <td><span style="color:var(--blue);font-weight:700;">+8.2kg ▲</span></td>
-              <td><span style="color:var(--blue)">14% (-2%)</span></td>
-              <td>48</td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">LC</div>Lucas Costa</div></td>
+              <td data-label="Peso Inicial" style="color:var(--gray)">72kg</td><td data-label="Peso Atual">80.2kg</td>
+              <td data-label="Variação"><span style="color:var(--blue);font-weight:700;">+8.2kg ▲</span></td>
+              <td data-label="Gordura"><span style="color:var(--blue)">14% (-2%)</span></td>
+              <td data-label="Treinos">48</td>
             </tr>
             <tr>
-              <td><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">AS</div>Ana Santos</div></td>
-              <td style="color:var(--gray)">68kg</td><td>61.5kg</td>
-              <td><span style="color:var(--green);font-weight:700;">-6.5kg ▼</span></td>
-              <td><span style="color:var(--green)">22% (-5%)</span></td>
-              <td>27</td>
+              <td data-label="Aluno"><div style="display:flex;align-items:center;gap:8px;"><div class="student-row-avatar">AS</div>Ana Santos</div></td>
+              <td data-label="Peso Inicial" style="color:var(--gray)">68kg</td><td data-label="Peso Atual">61.5kg</td>
+              <td data-label="Variação"><span style="color:var(--green);font-weight:700;">-6.5kg ▼</span></td>
+              <td data-label="Gordura"><span style="color:var(--green)">22% (-5%)</span></td>
+              <td data-label="Treinos">27</td>
             </tr>
           </tbody>
         </table>

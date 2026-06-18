@@ -854,6 +854,14 @@
   .goal-pct { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: var(--green); }
   .goal-sub { font-size: 12px; color: var(--gray); margin-top: 6px; }
 
+  /* ── TABLE SCROLL WRAPPER ── */
+  .table-scroll-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .table-scroll-wrap .data-table { width: max-content; min-width: 100%; }
+
   /* ── ADMIN TABLE ── */
   .data-table { width: 100%; border-collapse: collapse; }
   .data-table th {
@@ -1027,6 +1035,63 @@
   .page-header > * { max-width: 100%; }
   .topbar { flex-wrap: wrap; gap: 12px; }
   .data-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+  .table-scroll-wrap { margin: 0 -4px; padding: 0 4px; }
+  .table-scroll-wrap .data-table { display: table; width: max-content; min-width: 100%; }
+  .section-card:has(.table-scroll-wrap) { padding-left: 12px; padding-right: 12px; overflow: hidden; }
+  .data-table th { padding: 10px 10px; font-size: 10px; }
+  .data-table td { padding: 10px 10px; font-size: 13px; }
+  .action-btns { flex-direction: column; gap: 4px; }
+  .action-btns .btn-sm { padding: 6px 10px; font-size: 12px; min-height: 32px; }
+
+  /* ── RESPONSIVE TABLE → CARDS (mobile) ── */
+  .data-table--responsive thead { display: none; }
+  .data-table--responsive,
+  .data-table--responsive tbody,
+  .data-table--responsive tr,
+  .data-table--responsive td { display: block; width: 100%; box-sizing: border-box; }
+  .data-table--responsive tr {
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    padding: 4px 0;
+    background: rgba(255,255,255,0.03);
+  }
+  .data-table--responsive tr:last-child { margin-bottom: 0; }
+  .data-table--responsive td {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 9px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px;
+    text-align: left;
+  }
+  .data-table--responsive td:last-child { border-bottom: none; }
+  .data-table--responsive td::before {
+    content: attr(data-label);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--gray);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: left;
+  }
+  .data-table--responsive td[data-label="Aluno"],
+  .data-table--responsive td[data-label="aluno"] {
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .data-table--responsive td[data-label="Aluno"]::before,
+  .data-table--responsive td[data-label="aluno"]::before { display: none; }
+  .data-table--responsive .action-btns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: flex-start;
+  }
   .photo-grid { grid-template-columns: repeat(2, 1fr); }
   .login-links { flex-direction: column; gap: 4px; align-items: center; }
 
